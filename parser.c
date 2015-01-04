@@ -55,14 +55,14 @@ void init_parser() {
 
 bool accept(enum sym_type type) {
     if (next[0].type != type)
-		return false;
+        return false;
     nextsym();
     return true;
 }
 
 bool accept_char(char *x) {
     if (next[0].type != CHAR)
-		return false;
+        return false;
     *x = (char)next[0].data;
     nextsym();
     return true;
