@@ -1,0 +1,7 @@
+*.swp
+*~
+*.dSYM
+parser
+test
+out*
+

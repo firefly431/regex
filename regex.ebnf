@@ -1,0 +1,12 @@
+char   = [^*|()] | "\\", [^*|()];
+star   = "*";
+union  = "|";
+lparen = "(";
+rparen = ")";
+null   = "";
+
+string = char | lparen, regex, rparen;
+string_star = string, star;
+string_any  = string | string_star;
+group = string_any | string_any, group;
+regex = group | group, union, regex;
