@@ -54,20 +54,18 @@ void init_parser() {
 }
 
 bool accept(enum sym_type type) {
-    if (next[0].type == type) {
-        nextsym();
-        return true;
-    }
-    return false;
+    if (next[0].type != type)
+		return false;
+    nextsym();
+    return true;
 }
 
 bool accept_char(char *x) {
-    if (next[0].type == CHAR) {
-        *x = (char)next[0].data;
-        nextsym();
-        return true;
-    }
-    return false;
+    if (next[0].type != CHAR)
+		return false;
+    *x = (char)next[0].data;
+    nextsym();
+    return true;
 }
 
 void expect(enum sym_type type) {
