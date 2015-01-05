@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <math.h>
+#include <assert.h>
 #include "parser.h"
 #include "nfa.h"
 
@@ -20,6 +21,8 @@ void traverse(struct node *x) {
         fputs("\"];\n", f);
         if (!nodes[cur->to->id])
             traverse(cur->to);
+        else
+            assert(nodes[cur->to->id] == cur->to);
     }
 }
 
@@ -57,10 +60,10 @@ int main() {
             /* weighted reservoir sampling */
             struct edge_node *next = cur->edges.head;
             double key = ((double)rand()) / RAND_MAX;
-            key = pow(key, next->transition == '\0' ? 3 : 1);
+            key = pow(key, next->transition == '\0' ? 2 : 1);
             for (struct edge_node *en = next->next; en; en = en->next) {
                 double k = ((double)rand()) / RAND_MAX;
-                k = pow(k, en->transition == '\0' ? 3 : 1);
+                k = pow(k, en->transition == '\0' ? 2 : 1);
                 if (k > key) {
                     key = k;
                     next = en;

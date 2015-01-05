@@ -106,3 +106,9 @@ struct nfa convert_string(struct string *x) {
             a = nfa_plus(a);
     return a;
 }
+
+struct nfa_final finalize(struct nfa x) {
+    struct nfa_final ret = { x.initial, x.final, node_counter };
+    node_counter = 0;
+    return ret;
+}

@@ -31,4 +31,9 @@ struct nfa convert_regex(struct regex *x);
 struct nfa convert_group(struct group *x);
 struct nfa convert_string(struct string *x);
 
+struct nfa_final {
+    struct node *initial, *final;
+    size_t size;
+} finalize(struct nfa x);
+
 #endif
